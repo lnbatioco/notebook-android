@@ -27,6 +27,7 @@ public class NoteEditorActivity extends AppCompatActivity {
         if (noteId != -1){
             editText.setText(MainActivity.notes.get(noteId));
         } else {
+            // TODO #20:
             MainActivity.notes.add("");
             noteId = MainActivity.notes.size() -1;
             MainActivity.arrayAdapter.notifyDataSetChanged();
@@ -61,5 +62,8 @@ public class NoteEditorActivity extends AppCompatActivity {
                 // after text is changed
             }
         });
+
+
+
     }
 }
