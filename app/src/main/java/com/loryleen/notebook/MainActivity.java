@@ -3,6 +3,9 @@ package com.loryleen.notebook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +18,39 @@ public class MainActivity extends AppCompatActivity {
     // TODO #2: link ArrayList to listView. array list needs to be accessed from all parts of the app.
     static ArrayList<String> notes = new ArrayList<>();
     static ArrayAdapter arrayAdapter;
+
+
+
+
+    // TODO #18: use MenuInflator to link our menu w/ menu we just created
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.add_note_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+
+    // TODO #19: add onOptionsItemSelected
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.add_note) {
+            Intent intent = new Intent(getApplicationContext(), NoteEditorActivity.class);
+
+            startActivity(intent);
+
+            return true;
+        }
+        return false;
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        // TODO #17: ADDING a note
+            // we want to add a menu item at the top right
+                // add new directory inside res folder. res > new > directory > name: "menu"
+                // menu > new > Menu resource file > name: "add_note_menu"
+                    // add item to add_note_menu.xml
+                // now we need to add it to this MainActivity
+
+
     }
 }

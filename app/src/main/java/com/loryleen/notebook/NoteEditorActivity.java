@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 public class NoteEditorActivity extends AppCompatActivity {
 
+    int noteId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +21,19 @@ public class NoteEditorActivity extends AppCompatActivity {
 
         // TODO #11: get note id that was passed to this activity from MainActivity
         Intent intent = getIntent();
-        final int noteId = intent.getIntExtra("noteId", -1); // listView ID starts at 0, so -1 is impossible to get
+        noteId = intent.getIntExtra("noteId", -1); // listView ID starts at 0, so -1 is impossible to get
 
         // TODO #12: if noteId isn't -1, then we can SET the text content of the note from MainActivity
         if (noteId != -1){
             editText.setText(MainActivity.notes.get(noteId));
+        } else {
+            MainActivity.notes.add("");
+            noteId = MainActivity.notes.size() -1;
+            MainActivity.arrayAdapter.notifyDataSetChanged();
         }
+
+
+
 
         // TODO #13: SAVE / UPDATE content in editText when editText is changed
         editText.addTextChangedListener(new TextWatcher() {
