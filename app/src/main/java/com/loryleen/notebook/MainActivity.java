@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO #2: link ArrayList to listView. array list needs to be accessed from all parts of the app.
     static ArrayList<String> notes = new ArrayList<>();
+    static ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         notes.add("Example note");
 
         // TODO #4: set up ArrayAdapter
-        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, notes );
+        arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, notes );
 
         // TODO #5: set ArrayAdapter to listView
         listView.setAdapter(arrayAdapter);
