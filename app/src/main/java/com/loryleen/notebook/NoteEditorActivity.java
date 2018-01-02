@@ -1,11 +1,15 @@
 package com.loryleen.notebook;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+
+import java.util.HashSet;
 
 public class NoteEditorActivity extends AppCompatActivity {
 
@@ -55,6 +59,17 @@ public class NoteEditorActivity extends AppCompatActivity {
 
                 // TODO #16: update the listView itself via the arrayAdapter
                 MainActivity.arrayAdapter.notifyDataSetChanged();
+
+                // TODO #23: PERMANENT STORAGE
+                    // private so only app can access this data
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.loryleen.notebook", Context.MODE_PRIVATE);
+
+                // TODO #24: shared preferences needs a set to work with
+                    // create a HashSet of strings from arrayList in MainActivity
+                HashSet<String> set = new HashSet(MainActivity.notes);
+
+                // TODO #25: save the set in shared preferences
+                sharedPreferences.edit().putStringSet("notes", set).apply();
             }
 
             @Override

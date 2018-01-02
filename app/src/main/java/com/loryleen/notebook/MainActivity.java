@@ -65,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
         // TODO #1: add ListView
         ListView listView = (ListView) findViewById(R.id.listView);
 
+        // TODO #27:
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.loryleen.notebook", Context.MODE_PRIVATE);
+        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
+
+        if (set == null){
+            notes.add("Example note");
+        } else {
+            notes = new ArrayList(set);
+        }
+
         // TODO #3: add initial note
         notes.add("Example note");
 
@@ -125,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
 
                                 notes.remove(itemToDelete);
                                 arrayAdapter.notifyDataSetChanged();
+
+                                // TODO #26: copy and paste sharedPreferences from NoteEditorActivity for when a note is DELETED
+                                // private so only app can access this data
+                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.loryleen.notebook", Context.MODE_PRIVATE);
+
+                                // create a HashSet of strings from arrayList in MainActivity
+                                HashSet<String> set = new HashSet(MainActivity.notes);
+
+                                // save the set in shared preferences
+                                sharedPreferences.edit().putStringSet("notes", set).apply();
                             }
                         })
                         .setNegativeButton("No", null)
