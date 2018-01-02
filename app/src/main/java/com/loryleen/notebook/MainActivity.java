@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // TODO #3: add initial note
-        notes.add("Example note");
+        // notes.add("Example note"); moved to TODO #27
 
         // TODO #4: set up ArrayAdapter
         arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, notes );
